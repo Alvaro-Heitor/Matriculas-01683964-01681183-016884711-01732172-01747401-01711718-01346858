@@ -1,0 +1,38 @@
+select * from Autoridade
+
+INSERT INTO Autoridade 
+VALUES 
+(1,'Policia', '190', 'Segurança'),
+(2, 'Samu', '192', 'Ambulância'),
+(3, 'Bombeiros', '193', 'Resgate');
+
+insert into Usuario
+VALUES 
+(1, 'João da Silva', 'joaosilva@gmail.com', '+55 81987653312', 'joao123');
+(2, 'Joana Penha', 'joana.penha@gmail.com', '+55 81984253312', 'senha123'),
+(3, 'Ana Cavalcanti', 'cavalcanti.ana@gmail.com', '+55 81987853312', 'ana123'),
+(4, 'Victor Silva', 'victorsilva@gmail.com', '+55 81984883312', 'victor123');
+
+insert into Contato (id_contato, id_usuario, nome, email, telefone, tipo) 
+VALUES 
+(1,2, 'Rita', 'rita3454@gmail.com','55011987679837', 'Irmã'),
+(2,2, 'Carla', 'carla8998@gmail.com', '55011987679840', 'Esposa'),
+(4,1, 'Gustavo', 'gustavo0998@gmail.com', '55011987679856', 'Amigo');
+
+select Contato.id_contato, Contato.nome, Usuario.nome
+from Contato
+inner join Usuario on Contato.id_contato = Usuario.id_usuario;
+
+UPDATE Contato
+set tipo ='Mãe'
+WHERE id_contato = 2;
+
+ALTER TABLE Usuario CHANGE nome nome_usuario VARCHAR(100);
+
+ALTER TABLE Contato ADD email_contato VARCHAR(100);
+
+DELETE FROM Usuario WHERE nome_usuario = 'João da Silva';
+
+DROP TABLE Autoridade
+
+RENAME TABLE Usuarios TO Users;
