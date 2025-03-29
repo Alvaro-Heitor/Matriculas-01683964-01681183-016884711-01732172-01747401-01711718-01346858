@@ -1,0 +1,57 @@
+CREATE TABLE Usuario (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    telefone VARCHAR(20),
+    senha VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Contato (
+    id_contato INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    telefone VARCHAR(20),
+    tipo VARCHAR(50),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+);
+
+
+CREATE TABLE Localizacao (
+    id_localizacao INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    latitude DECIMAL(10, 8) NOT NULL,
+    longitude DECIMAL(11, 8) NOT NULL,
+    data_hora TIMESTAMP NOT NULL,
+    descricao VARCHAR(255),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+);
+
+
+CREATE TABLE Checkin (
+    id_checkin INT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_localizacao INT NOT NULL,
+    data_hora TIMESTAMP NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_localizacao) REFERENCES Localizacao(id_localizacao)
+);
+
+
+CREATE TABLE Emergencia (
+    id_emergencia INT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_contato INT,
+    tipo VARCHAR(50),
+    data_hora TIMESTAMP NOT NULL,
+    status VARCHAR(50),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_contato) REFERENCES Contato(id_contato)
+);
+
+CREATE TABLE Autoridade (
+    id_autoridade INT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    numero_contato VARCHAR(20) NOT NULL,
+    tipo_servico VARCHAR(50)
+);
