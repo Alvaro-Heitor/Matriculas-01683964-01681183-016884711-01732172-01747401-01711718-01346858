@@ -11,7 +11,7 @@ CREATE TABLE Contato (
     id_usuario INT NOT NULL,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100),
-    telefone VARCHAR(20),
+    telefone VARCHAR(20),,,
     tipo VARCHAR(50),
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
